@@ -7,6 +7,7 @@ namespace snedson_ecology_backend.core.Models.Dtos
         public Guid Id { get; set; }
         public string Title { get; set; }
         public Guid Author { get; set; }
+        public string AuthorFullName { get; set; } = "Варламов Иван Анатольевич";
         public string Description { get; set; }
         public long ScheduledDate { get; set; }
         public string LocationLat { get; set; }
