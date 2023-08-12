@@ -39,6 +39,13 @@ namespace snedson_ecology_backend
                             SnakeCaseNamingPolicy.Instance;
                     });
 
+            services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+            {
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader();
+            }));
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "snedson_ecology_backend", Version = "v1" });
@@ -68,6 +75,7 @@ namespace snedson_ecology_backend
             }
 
             app.UseHttpsRedirection();
+            app.UseCors("MyPolicy");
 
             app.UseRouting();
 
