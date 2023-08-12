@@ -18,6 +18,7 @@ namespace snedson_ecology_backend.core.Interfaces
         DbSet<Account> Accounts { get; set; }
         DbSet<Event> Events { get; set; }
         DbSet<EventNeed> EventNeeds { get; set; }
+        DbSet<EventParticipant> EventParticipants { get; set; }
         DbSet<Need> Needs { get; set; }
     }
 }
