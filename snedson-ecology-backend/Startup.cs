@@ -2,11 +2,14 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using snedson_ecology_backend.core.Interfaces;
+using snedson_ecology_backend.infrastructure.Db;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,6 +35,16 @@ namespace snedson_ecology_backend
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "snedson_ecology_backend", Version = "v1" });
             });
+
+            services.AddDbContext<EcologyContext>(
+                options => {
+                    options
+                    .UseLazyLoadingProxies()
+                    .UseNpgsql(Configuration.GetConnectionString("EcologyConnectionString"));
+                });
+
+            services.AddScoped<IEcologyContext>(provider =>
+                provider.GetService<EcologyContext>());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

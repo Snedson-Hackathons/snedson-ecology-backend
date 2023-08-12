@@ -26,4 +26,8 @@
     <PackageReference Include="System.ServiceModel.Security" Version="4.10.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\snedson-ecology-backend.infrastructure\snedson-ecology-backend.infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>

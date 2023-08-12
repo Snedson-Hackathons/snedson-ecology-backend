@@ -14,4 +14,8 @@
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.7" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\snedson-ecology-backend.core\snedson-ecology-backend.core.csproj" />
+  </ItemGroup>
+
 </Project>
