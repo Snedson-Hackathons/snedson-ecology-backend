@@ -1,5 +1,4 @@
-﻿using snedson_ecology_backend.core.Models.DbModelsd;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 #nullable disable
