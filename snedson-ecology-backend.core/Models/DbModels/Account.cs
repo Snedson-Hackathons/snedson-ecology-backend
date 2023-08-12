@@ -9,6 +9,7 @@ namespace snedson_ecology_backend.core.Models.DbModels
     {
         public Account()
         {
+            EventParticipants = new HashSet<EventParticipant>();
             Events = new HashSet<Event>();
         }
 
@@ -17,6 +18,7 @@ namespace snedson_ecology_backend.core.Models.DbModels
         public string Username { get; set; }
         public string Password { get; set; }
 
+        public virtual ICollection<EventParticipant> EventParticipants { get; set; }
         public virtual ICollection<Event> Events { get; set; }
     }
 }

@@ -10,6 +10,7 @@ namespace snedson_ecology_backend.core.Models.DbModels
         public Event()
         {
             EventNeeds = new HashSet<EventNeed>();
+            EventParticipants = new HashSet<EventParticipant>();
         }
 
         public Guid Id { get; set; }
@@ -24,5 +25,6 @@ namespace snedson_ecology_backend.core.Models.DbModels
 
         public virtual Account AuthorNavigation { get; set; }
         public virtual ICollection<EventNeed> EventNeeds { get; set; }
+        public virtual ICollection<EventParticipant> EventParticipants { get; set; }
     }
 }

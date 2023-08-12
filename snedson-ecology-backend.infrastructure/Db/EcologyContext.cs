@@ -26,6 +26,7 @@ namespace snedson_ecology_backend.infrastructure.Db
         public virtual DbSet<Account> Accounts { get; set; }
         public virtual DbSet<Event> Events { get; set; }
         public virtual DbSet<EventNeed> EventNeeds { get; set; }
+        public virtual DbSet<EventParticipant> EventParticipants { get; set; }
         public virtual DbSet<Need> Needs { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -106,6 +107,24 @@ namespace snedson_ecology_backend.infrastructure.Db
                     .HasForeignKey(d => d.NeedId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("EventNeeds_Need_fkey");
+            });
+
+            modelBuilder.Entity<EventParticipant>(entity =>
+            {
+                entity.HasKey(e => new { e.EventId, e.AccountId })
+                    .HasName("EventParticipants_pkey");
+
+                entity.HasOne(d => d.Account)
+                    .WithMany(p => p.EventParticipants)
+                    .HasForeignKey(d => d.AccountId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("EventParticipants_Account_fkey");
+
+                entity.HasOne(d => d.Event)
+                    .WithMany(p => p.EventParticipants)
+                    .HasForeignKey(d => d.EventId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("EventParticipants_Event_fkey");
             });
 
             modelBuilder.Entity<Need>(entity =>
