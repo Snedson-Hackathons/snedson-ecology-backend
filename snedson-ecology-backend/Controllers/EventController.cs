@@ -4,28 +4,25 @@ using System.Threading.Tasks;
 
 namespace snedson_ecology_backend.Controllers
 {
-    [Route("/api")]
+    [Route("/api/events")]
     [ApiController]
     public class EventController : Controller
     {
-        [HttpGet("[action]")]
-        public async Task<IActionResult> Events(int take, int offset)
+        [HttpGet]
+        public async Task<IActionResult> Events(int limit, int offset)
         {
-            //MainPageRM toReturn = await _mainPageFiller.FillModel(StudentId);
             return Ok("Hej");
         }
 
-        [HttpGet("event")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetEvent(Guid id)
         {
-            //MainPageRM toReturn = await _mainPageFiller.FillModel(StudentId);
-            return Ok("Hej");
+            return Ok("Hej " + id.ToString());
         }
 
-        [HttpPost("event")]
-        public async Task<IActionResult> CreateEvent(Guid id)
+        [HttpPost]
+        public async Task<IActionResult> CreateEvent()
         {
-            //MainPageRM toReturn = await _mainPageFiller.FillModel(StudentId);
             return Ok("Hej");
         }
 
