@@ -38,7 +38,7 @@ namespace snedson_ecology_backend.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetEventById(Guid id)
         {
-            return Ok(await getEventById.Action(id));
+            return Ok((await getEventById.Action(id)).Event);
         }
 
         [HttpPost]
