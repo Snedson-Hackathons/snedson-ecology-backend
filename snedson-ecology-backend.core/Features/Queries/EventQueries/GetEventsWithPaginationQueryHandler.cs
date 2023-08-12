@@ -22,9 +22,15 @@ namespace snedson_ecology_backend.core.Features.Queries.EventQueries
 
         public async Task<EventDto[]> Handle(GetEventsWithPaginationQuery request, CancellationToken cancellationToken)
         {
-            return await db.Events
-                .Skip(request.Offset)
-                .Take(request.Limit)
+            var query = db.Events
+                .Skip(request.Offset);
+
+            if(request.Limit != 0)
+            {
+                query.Take(request.Limit);
+            }
+
+            return await query
                 .Select(e => new EventDto
                 {
                     Id = e.Id,
