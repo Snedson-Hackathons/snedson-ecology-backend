@@ -16,11 +16,11 @@ namespace snedson_ecology_backend.core.Models.DbModels
         public string Title { get; set; }
         public Guid Author { get; set; }
         public string Description { get; set; }
-        public TimeSpan? ScheduledDate { get; set; }
         public string LocationLat { get; set; }
         public string LocationLon { get; set; }
         public string ExpectedResult { get; set; }
         public string ActualResult { get; set; }
+        public long? ScheduledDate { get; set; }
 
         public virtual Account AuthorNavigation { get; set; }
         public virtual ICollection<EventNeed> EventNeeds { get; set; }

@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Data.Common;
+using System.Threading;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.EntityFrameworkCore.Metadata;
 using snedson_ecology_backend.core.Interfaces;
 using snedson_ecology_backend.core.Models.DbModels;
@@ -69,9 +73,7 @@ namespace snedson_ecology_backend.infrastructure.Db
 
                 entity.Property(e => e.LocationLon).HasColumnName("location_lon");
 
-                entity.Property(e => e.ScheduledDate)
-                    .HasColumnType("time without time zone")
-                    .HasColumnName("scheduled_date");
+                entity.Property(e => e.ScheduledDate).HasColumnName("scheduled_date");
 
                 entity.Property(e => e.Title)
                     .IsRequired()
@@ -109,8 +111,8 @@ namespace snedson_ecology_backend.infrastructure.Db
             modelBuilder.Entity<Need>(entity =>
             {
                 entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("id");
+                    .HasColumnName("id")
+                    .UseIdentityAlwaysColumn();
 
                 entity.Property(e => e.IsChecked).HasColumnName("is_checked");
 
