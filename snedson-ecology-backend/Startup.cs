@@ -9,6 +9,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using snedson_ecology_backend.core.Interfaces;
+using snedson_ecology_backend.core.ExtensionMethods;
 using snedson_ecology_backend.infrastructure.Db;
 using System;
 using System.Collections.Generic;
@@ -45,6 +46,8 @@ namespace snedson_ecology_backend
 
             services.AddScoped<IEcologyContext>(provider =>
                 provider.GetService<EcologyContext>());
+
+            services.AddCoreInjections();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
