@@ -14,6 +14,7 @@ namespace snedson_ecology_backend.core.Models.Dtos
         public string LocationLon { get; set; }
         public string ExpectedResult { get; set; }
         public string ActualResult { get; set; }
+        public int ParticipantsCount { get; set; }
         public EventNeedDto[] Needs { get; set; }
     }
 }

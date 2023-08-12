@@ -35,6 +35,7 @@ namespace snedson_ecology_backend.core.Features.Queries.EventQueries
                     LocationLon = e.LocationLon,
                     ScheduledDate = e.ScheduledDate.Value,
                     Title = e.Title,
+                    ParticipantsCount = e.EventParticipants.Count(),
                     Needs = e.EventNeeds.Select(en => new EventNeedDto
                     {
                         Id = en.Need.Id,

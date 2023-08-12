@@ -37,6 +37,7 @@ namespace snedson_ecology_backend.core.Features.Queries.EventQueries
                     ActualResult = e.ActualResult,
                     Author = e.Author,
                     Description = e.Description,
+                    ParticipantsCount = e.EventParticipants.Count(),
                     ScheduledDate = e.ScheduledDate.Value,
                     Title = e.Title
                 })
