@@ -3,6 +3,18 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+# Appsettings with secrets
+**/appsettings.json
+
+# launchSettings
+**/launchSettings.json
+
+# Frontend build
+dist/
+
+.dockerignore
+Dockerfile
+
 # User-specific files
 *.rsuser
 *.suo
