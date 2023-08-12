@@ -32,7 +32,7 @@ namespace snedson_ecology_backend.Controllers
         [HttpGet]
         public async Task<IActionResult> GetEvents(int limit, int offset)
         {
-            return Ok(await getEvents.Action(limit, offset));
+            return Ok((await getEvents.Action(limit, offset)).Events);
         }
 
         [HttpGet("{id}")]
