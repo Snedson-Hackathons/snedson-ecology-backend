@@ -15,6 +15,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using snedson_ecology_backend.infrastructure.NamingPolicies;
 
 namespace snedson_ecology_backend
 {
@@ -31,7 +32,13 @@ namespace snedson_ecology_backend
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllers();
+            services.AddControllers()
+                .AddJsonOptions(
+                    options => {
+                        options.JsonSerializerOptions.PropertyNamingPolicy =
+                            SnakeCaseNamingPolicy.Instance;
+                    });
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "snedson_ecology_backend", Version = "v1" });
