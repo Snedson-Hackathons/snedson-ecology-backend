@@ -2,6 +2,7 @@
 using System;
 using System.Threading.Tasks;
 using snedson_ecology_backend.core.Actions.EventActions;
+using snedson_ecology_backend.core.Models.Dtos;
 
 namespace snedson_ecology_backend.Controllers
 {
@@ -11,11 +12,21 @@ namespace snedson_ecology_backend.Controllers
     {
         private readonly GetEventByIdAction getEventById;
         private readonly GetEventsAction getEvents;
+        private readonly CreateEventAction createEvent;
 
-        public EventController(GetEventByIdAction getEventById, GetEventsAction getEvents)
+        public EventController
+            (GetEventByIdAction getEventById, 
+            GetEventsAction getEvents,
+            CreateEventAction createEvent)
         {
             this.getEventById = getEventById;
             this.getEvents = getEvents;
+            this.createEvent = createEvent;
+        }
+
+        public Guid UserId
+        {
+            get => Guid.Parse("29e25ed3-d9b8-4d01-8c20-5bbe3e9c02a3"); // Temporary
         }
 
         [HttpGet]
@@ -31,10 +42,9 @@ namespace snedson_ecology_backend.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateEvent()
+        public async Task<IActionResult> CreateEvent([FromBody]EventDto eventAction)
         {
-            return Ok("Hej");
+            return Ok(await createEvent.Action(eventAction, UserId));
         }
-
     }
 }

@@ -14,6 +14,7 @@ namespace snedson_ecology_backend.core.ExtensionMethods
 
             services.AddScoped<GetEventByIdAction>();
             services.AddScoped<GetEventsAction>();
+            services.AddScoped<CreateEventAction>();
             return services;
         }
     }
