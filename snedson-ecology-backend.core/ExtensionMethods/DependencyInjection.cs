@@ -13,6 +13,7 @@ namespace snedson_ecology_backend.core.ExtensionMethods
             services.AddMediatR(Assembly.GetExecutingAssembly());
 
             services.AddScoped<GetEventByIdAction>();
+            services.AddScoped<GetEventsAction>();
             return services;
         }
     }

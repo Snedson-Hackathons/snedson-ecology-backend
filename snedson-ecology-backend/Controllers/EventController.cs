@@ -10,16 +10,18 @@ namespace snedson_ecology_backend.Controllers
     public class EventController : Controller
     {
         private readonly GetEventByIdAction getEventById;
+        private readonly GetEventsAction getEvents;
 
-        public EventController(GetEventByIdAction getEventById)
+        public EventController(GetEventByIdAction getEventById, GetEventsAction getEvents)
         {
             this.getEventById = getEventById;
+            this.getEvents = getEvents;
         }
 
         [HttpGet]
-        public async Task<IActionResult> Events(int limit, int offset)
+        public async Task<IActionResult> GetEvents(int limit, int offset)
         {
-            return Ok("Hej");
+            return Ok(await getEvents.Action(limit, offset));
         }
 
         [HttpGet("{id}")]

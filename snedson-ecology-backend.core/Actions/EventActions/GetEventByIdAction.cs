@@ -17,7 +17,6 @@ namespace snedson_ecology_backend.core.Actions.EventActions
             {
                 Event = await _mediator.Send(new GetEventByIdQuery { Id = id })
             };
-            
         }
     }
 }
