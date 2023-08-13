@@ -39,6 +39,12 @@ namespace snedson_ecology_backend
                             SnakeCaseNamingPolicy.Instance;
                     });
 
+
+            services.AddSpaStaticFiles(config =>
+            {
+                config.RootPath = "./dist";
+            });
+
             services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
             {
                 builder.AllowAnyOrigin()
@@ -69,12 +75,12 @@ namespace snedson_ecology_backend
         {
             //if (env.IsDevelopment())
             //{
-                app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "snedson_ecology_backend v1"));
+            app.UseDeveloperExceptionPage();
+            app.UseSwagger();
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "snedson_ecology_backend v1"));
             //}
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
             app.UseCors("MyPolicy");
 
             app.UseRouting();
@@ -85,6 +91,9 @@ namespace snedson_ecology_backend
             {
                 endpoints.MapControllers();
             });
+
+            app.UseSpaStaticFiles();
+            app.UseSpa(builder => { });
         }
     }
 }
