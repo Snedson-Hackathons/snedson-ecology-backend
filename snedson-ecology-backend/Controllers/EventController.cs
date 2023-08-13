@@ -1,30 +1,50 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
+using snedson_ecology_backend.core.Actions.EventActions;
+using snedson_ecology_backend.core.Models.Dtos;
 
 namespace snedson_ecology_backend.Controllers
 {
-    [Route("/api/events")]
+    [Route("/api/v1/events")]
     [ApiController]
     public class EventController : Controller
     {
-        [HttpGet]
-        public async Task<IActionResult> Events(int limit, int offset)
+        private readonly GetEventByIdAction getEventById;
+        private readonly GetEventsAction getEvents;
+        private readonly CreateEventAction createEvent;
+
+        public EventController
+            (GetEventByIdAction getEventById, 
+            GetEventsAction getEvents,
+            CreateEventAction createEvent)
         {
-            return Ok("Hej");
+            this.getEventById = getEventById;
+            this.getEvents = getEvents;
+            this.createEvent = createEvent;
+        }
+
+        public Guid UserId
+        {
+            get => Guid.Parse("29e25ed3-d9b8-4d01-8c20-5bbe3e9c02a3"); // Temporary
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetEvents(int limit, int offset)
+        {
+            return Ok((await getEvents.Action(limit, offset)).Events);
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetEvent(Guid id)
+        public async Task<IActionResult> GetEventById(Guid id)
         {
-            return Ok("Hej " + id.ToString());
+            return Ok((await getEventById.Action(id)).Event);
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateEvent()
+        public async Task<IActionResult> CreateEvent([FromBody]EventDto eventAction)
         {
-            return Ok("Hej");
+            return Ok(await createEvent.Action(eventAction, UserId));
         }
-
     }
 }
